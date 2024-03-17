@@ -6,12 +6,21 @@ n_list=list(map(int,input().split()))
 m=int(input())
 m_list=list(map(int,input().split()))
 
-dic={}
+n_list.sort()
 
-for i in n_list:
-    dic[i]=0
-for j in m_list:
-    if j not in dic:
-        print(0, end=' ')
-    else:
-        print(1, end=' ')
+for num in m_list:
+    exist=False
+    start=0
+    end=n-1
+    while start<=end:
+        mid=(start+end)//2
+        if num==n_list[mid]:
+            exist=True
+            print(1)
+            break
+        elif num>n_list[mid]:
+            start=mid+1
+        else:
+            end=mid-1
+    if not exist:
+        print(0)
