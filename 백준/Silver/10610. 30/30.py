@@ -2,16 +2,17 @@ import sys
 input=sys.stdin.readline().rstrip
 
 n=input()
-n_i=[]
-exist_0=False
-for i in n:
-    n_i.append(int(i))
-    if i=='0':
-        exist_0=True
 
-if exist_0==True and sum(n_i)%3==0:
-    n_i.sort(reverse=True)
-    for i in n_i:
-        print(i,end='')
-else:
+if '0' not in n:
     print(-1)
+else:
+    n_sum=0
+    for i in range(len(n)):
+        n_sum+=int(n[i])
+    if n_sum%3 !=0:
+        print(-1)
+    else:
+        sorted_n=sorted(n,reverse=True)
+        answer=''.join(sorted_n)
+        print(answer)
+       
