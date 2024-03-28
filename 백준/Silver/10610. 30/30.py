@@ -1,7 +1,7 @@
 import sys
 input=sys.stdin.readline().rstrip
 
-n=list(map(str,input()))
+n=input()
 n_i=[]
 exist_0=False
 for i in n:
