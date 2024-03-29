@@ -4,16 +4,11 @@ input=sys.stdin.readline
 n,m=map(int,input().split())
 
 if n==1:
-    answer=1
+    print(1)
 elif n==2:
-    answer=(m+1)//2
-    if answer>=5:
-        answer=4
+    print(min(4,(m+1)//2))
 elif m<7:
-    answer=m
-    if answer>=5:
-        answer=4
+    print(min(4,m))
 elif n>=3 and m>=7:
-    answer=m-2
-print(answer)
+    print(m-2)
         
