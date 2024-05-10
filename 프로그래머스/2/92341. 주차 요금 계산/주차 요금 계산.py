@@ -22,9 +22,10 @@ def solution(fees, records):
             else: 
                 using_time[number] = time-parking[number]
             del parking[number]
+    # 아직 parking에 남아있는 거 = 출차하지 않은 차
     for number, time in parking.items():
         if number in using_time:
-            using_time[number]+= 1439-time
+            using_time[number]+= 1439-time # 23:59에서 빼주기
         else:
             using_time[number]=1439-time
     for number, time in sorted(using_time.items(), key=lambda x:x[0]):
