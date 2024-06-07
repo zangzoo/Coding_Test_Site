@@ -3,17 +3,13 @@ def solution(n, lost, reserve):
     lost.sort()
     reserve.sort()
 	
-    # lost, reserve에 공통으로 있는 요소 제거
-    for i in reserve[:]:
-        if i in lost:
-            reserve.remove(i)
-            lost.remove(i)
-	
-    # 체육복 빌려주기(나의 앞 번호부터 확인)
-    for i in reserve:
-        if i-1 in lost:
-            lost.remove(i-1)
-        elif i+1 in lost:
-            lost.remove(i+1)
-    
-    return n-len(lost)
+    _reserve = [r for r in reserve if r not in lost]
+    _lost = [l for l in lost if l not in reserve]
+    for r in _reserve:
+        f = r - 1
+        b = r + 1
+        if f in _lost:
+            _lost.remove(f)
+        elif b in _lost:
+            _lost.remove(b)
+    return n - len(_lost)
