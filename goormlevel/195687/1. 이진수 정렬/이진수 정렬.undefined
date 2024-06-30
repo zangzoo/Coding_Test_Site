@@ -1,0 +1,14 @@
+import sys
+input = sys.stdin.readline
+
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+
+# 숫자의 1 비트 수를 카운트하여 정답 배열을 생성합니다.
+answer = [(bin(x).count('1'), x) for x in a]
+
+# answer를 1 비트 수와 원래 숫자를 기준으로 정렬합니다.
+answer.sort(key=lambda x: (-x[0], -x[1]))
+
+# k번째 값을 출력합니다.
+print(answer[k-1][1])
