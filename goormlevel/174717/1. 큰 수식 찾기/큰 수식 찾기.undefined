@@ -1,0 +1,45 @@
+# 두 개의 수식 주어짐 
+# 수식 처음, 마지막은 숫자
+# 수의 첫문자가 0은 아님
+# 연산자 최소 하나
+# 연산자 붙어서 등장하진 않음
+# 연산자 우선순위에 따라 계산했을때, 더 큰 값을 출력
+
+a, b=input().split()
+
+def compare(a):
+	before=-1
+	process=[]
+	for i in range(len(a)):
+		if a[i] in ['*','-','+']:
+			num=int(a[before+1:i])
+			before=i
+			process.append(num)
+			process.append(a[i])
+
+		if i==len(a)-1:
+			num=int(a[before+1:i+1])
+			process.append(num)
+	
+	# 곱셈 처리
+	j=1
+	while j<len(process):
+		if process[j]=='*':
+			n=process[j-1]*process[j+1]
+			process[j-1]=n
+			del process[j:j+2]
+		else:
+			j+=2
+	
+	result=process[0]
+	i=1
+	while i<len(process):
+		if process[i]=='-':
+			result-=process[i+1]
+		elif process[i]=='+':
+			result+=process[i+1]
+		i+=2
+	return result
+		
+print(max(compare(a),compare(b)))
+	
