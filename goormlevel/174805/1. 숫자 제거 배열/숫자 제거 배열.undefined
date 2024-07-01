@@ -1,0 +1,15 @@
+# 배여레 n개의 정수를 순서대로 넣기
+# 정수 중 k가 포함되어있으면 배열에 넣지 않기
+# 정수는 순서대로 주어짐, i번째 제공되는 정수는 ai
+#포함되어있다 = 정수에 숫자 문자열 k가 순서대로 정확히 있어야함
+# 모든 정수를 배열에 넣었을때, 배열에 들어갈 수 있는 정수의 개수 출력
+
+n,k=map(int,input().split())
+a=list(map(str,input().split()))
+
+result=0
+for i in range(n):
+	if str(k) not in a[i]:
+		result+=1
+		
+print(result)
