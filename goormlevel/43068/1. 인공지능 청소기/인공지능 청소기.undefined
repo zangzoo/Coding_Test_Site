@@ -1,0 +1,28 @@
+# 로봇청소기 예약청소기능 테스트
+# 사용자가 설정한 시간과 장소에 정확히 도착
+# 1초에 한번, 상하좌우 중 하나로 1의 거리
+# 재방문 가능
+# n초의 시간이 흐른 후 (x,y)에 있어야함
+# 처음 청소기는 (0,0)에 위치
+
+# 테스트케이스 t, 
+# x,y,n 주어짐 
+# 가능하면 YES, 불가능하면 NO 출력
+
+# 각 좌표의 절댓값을 더한 값과 같으면 YES, 작으면 NO, 크면 뺀 나머지 짝.홀 따져보고 짝이면 YES
+
+import sys
+input=sys.stdin.readline
+
+t=int(input())
+for _ in range(t):
+	x,y,n=map(int,input().split())
+	if abs(x)+abs(y)==n:
+		print('YES')
+	elif abs(x)+abs(y)>n:
+		print('NO')
+	elif abs(x)+abs(y)<n:
+		if (n-(abs(x)+abs(y)))%2==0:
+			print('YES')
+		else:
+			print('NO')
