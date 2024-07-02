@@ -1,0 +1,14 @@
+# 7% 소금물 ng에 mg 만큼의 물을 넣었을 때, 소금물의 농도를 소수 2번째 자리까지 표현, 나머지 버리기
+
+# n,m 주어짐
+
+import sys
+import math
+
+input=sys.stdin.readline
+
+n,m=map(int,input().split())
+
+print(format((math.trunc((7*n)/(n+m)*100)/100),'.2f'))
+
+# print(format((7*n)/(n+m),'.2f'))
