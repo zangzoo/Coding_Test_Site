@@ -1,0 +1,34 @@
+# 타운홀에 n개의 행사가 예정
+# i번째 행사의 시작시간 si, 종료시간 ei
+# 행사끼리 진행 시간이 서로 겹치지않게 가장 많은 행사
+# 행사가 종료된 후 바로 다음 행사 진행 불가, 최소 1의 시간이 지난 뒤 다른 행사 시작 가능
+# 행사의 최대 개수 출력
+
+# 시작 가능한 행사들 중 종료시간 가장 빠른 행사 실행
+
+# 1. 현재 시간 변수 지정
+# 2. 시작 가능한 행사들 중 종료시간 가장 빠른 행사 실행, 끝나는 시간+1을 time으로 선언, result+=1
+# 3. 2번을 아무것도 실행할 수 없을때까지 반복
+# 4. result 출력
+
+import sys
+input=sys.stdin.readline
+
+n=int(input())
+e=[]
+for _ in range(n):
+	e.append(list(map(int,input().split())))
+e.sort(key=lambda x:(x[1],x[0]))
+#print(e)
+result=0
+time=1
+start=[s[0] for s in e]
+#print(start)
+
+while any(start)>=time:
+	for i in range(len(e)):
+		if e[i][0]>=time:
+			start[i]=0
+			time=e[i][1]+1
+			result+=1
+print(result)
