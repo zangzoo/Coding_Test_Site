@@ -1,0 +1,37 @@
+# 각 자리마다 최댓값이 다른 숫자판을 가진 계수기 만들기
+# 계수기는 n개의 자릿수 표기
+# i번째 자리에는 0부터 ai까지 숫자 표시 가능
+# 버튼 한번 누르면 가장 오른쪽 숫자 1증가
+	# 만약 최댓값보다 커지면 숫자를 최솟값 0으로 초기화, 바로 왼쪽 숫자 1증가
+	# 가장 왼쪽 자리 숫자 최댓값 넘어가면 전파X
+	
+# 숫자판 개수 n
+# 각 숫자판의 최댓값 의미하는 a가 n개 주어짐
+# 각 숫자판의 초기값 의미하는 b가 n개 주어짐
+# 버튼 누르는 횟수 k
+
+# k번 버튼을 누른 뒤 계수기의 각 자리에 표시되는 숫자 구해라
+
+# 초기값의 맨 끝자리에 k 더해짐 -> max+1 로 나눈 나머지가 해당 값이 됨
+	# 나눈 몫은 그 앞자리에 더해짐
+		# k가 0이 되거나 맨 왼쪽이 0이되면 종료
+		
+import sys
+input=sys.stdin.readline
+
+n=int(input())
+max_n= list(map(int,input().split()))
+first_n = list(map(int,input().split()))
+k=int(input())
+
+for i in range(n-1,-1,-1):
+	mok=(k+first_n[i])//(max_n[i]+1)
+	na=(k+first_n[i])%(max_n[i]+1)
+	first_n[i]=na
+	k=mok
+
+for i in first_n:
+	print(i,end='')
+
+
+	
