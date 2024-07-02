@@ -1,0 +1,45 @@
+# 구름이 마을 n개의 집이 순서대로 세워져 있음
+# i번째 집 땅 높이는 ki, 음수일수도
+# 장마 시작되면 m일 동안 옴, 장마가 시작된지 i일이 되면 si번 집이 있는 위치부터 ei번째 까지 비가 내림
+# 어떤 집에 비가 내리면 그 집에 쌓인 물의 높이가 1만큼 증가
+# 한 번 쌓인 물은 배수 시스템 작동돼야 빠짐
+# 배수 시스템 : 장마가 시작된지 3의 배수가 되는 날마다 작동, 작동 날짜를 기준으로 2일 이내에 비가 내린 위치에서만
+# 배수 시스템은 물의 높이 1 감소시킴
+# 장마가 지나간 뒤, 마을의 모든 땅 높이는 해당 물의 높이만큼 증가
+
+# 집의 개수 n, 장마 기간 m
+# 마을의 땅 높이 k가 n개 주어짐
+# si, ei 주어짐 - i일에는 si부터 ei까지 비가 옴
+
+# 장마 끝난 후 땅 높이 한 줄에 출력해라
+
+import sys
+input=sys.stdin.readline
+
+n,m=map(int,input().split())
+
+home=list(map(int,input().split()))
+
+increase=[0]*n
+
+for day in range(1,m+1):
+	rain=list(map(int,input().split()))
+	
+	for i in range(rain[1]-rain[0]+1):
+			increase[i+rain[0]-1]+=1
+			
+	if day%3==0 :
+		for inc in range(n):
+			if increase[inc]!=0:
+				home[inc]+=(increase[inc]-1)
+		increase=[0]*n
+	elif day==m:
+		for inc in range(n):
+			if increase[inc]!=0:
+				home[inc]+=(increase[inc])
+		increase=[0]*n
+		
+
+for h in home:
+	print(h,end=' ')
+			
