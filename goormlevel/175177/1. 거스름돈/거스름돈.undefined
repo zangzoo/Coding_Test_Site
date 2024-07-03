@@ -1,0 +1,13 @@
+# 5종류의 동전, 각 1,5,10,20,40
+# n원의 거스름돈 주려할 때, n원을 거슬러주기 위해 필요한 동전의 최소 개수는??
+
+n=int(input())
+
+result=0
+coin=[40,20,10,5,1]
+
+for c in coin:
+	if n>=c:
+		result+=n//c
+		n=n%c
+print(result)
