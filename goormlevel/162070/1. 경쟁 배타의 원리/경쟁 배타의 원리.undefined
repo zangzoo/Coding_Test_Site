@@ -1,0 +1,60 @@
+# k개의 종이 공존할 때 경쟁 일어남, 많거나 적을땐 공생하며 살아감
+# 가로세로가 1000인 정사각혁, 현재 생태적 지위가 같은 N종의 생물이 있음
+# 각 종의 서식지는 메타버스 테두리에 평행한 직사각형으로 나타냄
+
+# 메타버스 생태계 지도가 주어졌을때, 경쟁 배타의 원리가 일어나는 영역의 총 넓이를 구해라
+
+# 생태적 지위 같은 N종의 생물, k개의 종
+# 각 종의 서식지를 나타내는 정수(사각형)
+
+# import sys
+# input=sys.stdin.readline
+# from collections import Counter
+
+# n,k=map(int,input().split())
+# meta=[[0 for _ in range(1000)] for _ in range(1000)]
+# result=0
+
+# for i in range(n):
+# 	x1,y1,x2,y2=map(int,input().split())
+# 	for x in range(x1,x2):
+# 		for y in range(y1,y2):
+# 			meta[x][y]+=1
+
+# for i in range(1000):
+# 	for j in range(1000):
+# 		if meta[i][j]==k:
+# 			result+=1
+
+# print(result)
+import sys
+input = sys.stdin.readline
+
+n, k = map(int, input().split())
+meta = [[0 for _ in range(1001)] for _ in range(1001)]
+
+# 사각형의 좌표를 받아서 누적합 배열에 기록
+for _ in range(n):
+    x1, y1, x2, y2 = map(int, input().split())
+    meta[x1][y1] += 1
+    meta[x1][y2] -= 1
+    meta[x2][y1] -= 1
+    meta[x2][y2] += 1
+
+# 2차원 누적 합 배열 생성
+for i in range(1001):
+    for j in range(1, 1001):
+        meta[i][j] += meta[i][j - 1]
+
+for j in range(1001):
+    for i in range(1, 1001):
+        meta[i][j] += meta[i - 1][j]
+
+# k값인 셀 개수 계산
+result = 0
+for i in range(1000):
+    for j in range(1000):
+        if meta[i][j] == k:
+            result += 1
+
+print(result)
