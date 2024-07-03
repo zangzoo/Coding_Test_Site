@@ -1,0 +1,40 @@
+# 최대한 많은 커플 생기도록, 지인들에게 점수 부여
+
+# 구름이의 지인의 수는 항상 짝수
+# 모든 점수는 0점을 제외한 정수
+# 지인들 중 같은 점수를 가지고 있는 경우는 없음
+# 만약 n점을 가진 사람이있으면 -n점을 가진 사람이 항상 존재
+
+# 점수를 합해 0이되는 두 명을 짝지어서 소개팅
+# 실수로 4번쨰 규칙 못지킴, 두 사람이 소개팅 못받음 => 소개팅 받지 못한 두 사람의 점수를 합해 출력
+
+# 지인의 수n,
+# 지인들에게 부여한 점수 s
+
+# 점수들 순회하면서 -n이 있으면 n으로 바꿔주기 => count(n)이 홀수인 두 수 더해주기 => 시간초과,,
+# 점수들 순회하면서 -n이 있으면 pop?
+
+import sys
+from collections import Counter
+input=sys.stdin.readline
+
+n=int(input())
+s=list(map(int,input().split()))
+
+counter = Counter(s)
+result=0
+
+#print(counter)
+for score in list(counter):
+	#print(score,cnt)
+	opposite_score = -score
+	if counter[score]>0 and counter[opposite_score]>0:
+		pairs=min(counter[score],counter[opposite_score])
+		counter[score]-=pairs
+		counter[opposite_score]-=pairs
+		
+for score,cnt in counter.items():
+	if cnt>0:
+		result+=score*cnt
+		
+print(result)
