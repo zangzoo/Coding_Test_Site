@@ -1,0 +1,72 @@
+# 무한히 넓은 2차원 평면 위 규칙에 따라 블록 올리기
+# 1. (0,0)에 점수 1인 블록 놓기
+# 2. 가장 마지막에 놓은 블록의 상하좌우 중 한 곳에 놓기, i번째로 놓는 블록의 점수는 si
+# 3. 이미 블록이있는 경우, 블록을 새로 놓을 위치에 원래 블록이 존재하지 않을 때까지 최근에 놓은 블록들을 순서대로 제거하고 블록 놓기
+
+# 블록 게임의 점수 = 게임이 모두 끝난 후 남아있는 블록들의 점수 합
+# 블록 놓은 방향, 각 점수가 주어짐 => 게임에서 얻은 점수 구해라
+
+# 블록 올려놓은 횟수 n
+# 각 블록 놓은 방향, 문자열 D
+# 각 블록의 점수
+
+
+n=int(input())
+d=list(input())
+score = list(map(int,input().split()))
+
+board=[[0,0]]
+result=[1]
+
+for i in range(n):
+	
+	if d[i]=='U':
+		now= board[-1]
+		if [now[0]-1,now[1]] in board:
+			while [now[0]-1,now[1]] in board:
+				board.pop()
+				result.pop()
+			board.append([now[0]-1,now[1]])
+			result.append(score[i])
+		else:
+			board.append([now[0]-1,now[1]])
+			result.append(score[i])
+			
+	elif d[i]=='D':
+		now= board[-1]
+		if [now[0]+1,now[1]] in board:
+			while [now[0]+1,now[1]] in board:
+				board.pop()
+				result.pop()
+			board.append([now[0]+1,now[1]])
+			result.append(score[i])
+		else:
+			board.append([now[0]+1,now[1]])
+			result.append(score[i])
+			
+	elif d[i]=='L':
+		now= board[-1]
+		if [now[0],now[1]-1] in board:
+			while [now[0],now[1]-1] in board:
+				board.pop()
+				result.pop()
+			board.append([now[0],now[1]-1])
+			result.append(score[i])
+		else:
+			board.append([now[0],now[1]-1])
+			result.append(score[i])
+			
+	elif d[i]=='R':
+		now= board[-1]
+		if [now[0],now[1]+1] in board:
+			while [now[0],now[1]+1] in board:
+				board.pop()
+				result.pop()
+			board.append([now[0],now[1]+1])
+			result.append(score[i])
+		else:
+			board.append([now[0],now[1]+1])
+			result.append(score[i])
+			
+print(sum(result))
+		
