@@ -1,0 +1,35 @@
+# 개미집합의 지름 = 개미 집합에 들어있는 임의의 두 개미 사이의 거리 중 가장 긴 거리
+# n개의 개미 집합의 지름을 D 이하로 만들기 위해 개미 일부를 제거해야함
+# 이때 제거되는 개미의 수를 최소로 만들어 출력해라
+
+#개미 수 n, 제한 지름 d
+#각 개미의 좌표 p 
+
+# 이중 포문은 시간초과
+
+# n만큼 순회 
+# 개미 한마리 뽑고, 그다음 애들하고 차를 계산해서 d 이하인 애들을 servive로 카운트 해주기, servive는 max값으로 되게끔 -> d 초과면 반복문 종료
+
+# 개미 한 마리 뽑고 , 그 다음 애들하고 차를 계산 => n-d초과한 인덱스 =.제거할 개미 수
+# 제거할 개미수 가장 작은걸로 출력
+
+import sys
+from collections import deque
+input=sys.stdin.readline
+
+n,d=map(int,input().split())
+p=list(map(int,input().split()))
+p.sort()
+
+result = n
+left = 0
+die=False	
+
+for right in range(n):
+	while p[right] - p[left] > d:
+		left += 1
+		result = min(result, n - (right - left + 1))
+		die=True
+if die==False:
+	result=0
+print(result)
