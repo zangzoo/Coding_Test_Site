@@ -1,0 +1,14 @@
+# 통증 수치를 0으로 유지
+# bandage = 1감소, medicine = 7감소, painkiller = 14감소
+
+#n의 통증 수치를 가지고 있을때, 0으로 줄이기 위한 아이템의 최소 개수 구해라, 0보다 작아지게는 할 수 없음
+
+n=int(input())
+item=[14,7,1]
+
+result=0
+
+for i in item:
+	result+=(n//i)
+	n=n%i
+print(result)
