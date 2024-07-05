@@ -1,11 +1,12 @@
-# 두 개의 수식 주어짐 
-# 수식 처음, 마지막은 숫자
-# 수의 첫문자가 0은 아님
-# 연산자 최소 하나
-# 연산자 붙어서 등장하진 않음
-# 연산자 우선순위에 따라 계산했을때, 더 큰 값을 출력
+#두 수식, a,b 주어짐
+#연산자 우선순위에 따라 계산했을 때, 두 수식의 계산 결과 중 더 큰 값을 출력해라
 
-a, b=input().split()
+#연산자는 + * -
+
+#입력받은 애 길이만큼 순회
+	#숫자면 붙여서 숫자로 다시 넣어주기
+
+a,b=input().split()
 
 def compare(a):
 	before=-1
@@ -16,12 +17,12 @@ def compare(a):
 			before=i
 			process.append(num)
 			process.append(a[i])
-
+		
 		if i==len(a)-1:
 			num=int(a[before+1:i+1])
 			process.append(num)
-	
-	# 곱셈 처리
+			
+	#곱셈
 	j=1
 	while j<len(process):
 		if process[j]=='*':
@@ -30,7 +31,7 @@ def compare(a):
 			del process[j:j+2]
 		else:
 			j+=2
-	
+			
 	result=process[0]
 	i=1
 	while i<len(process):
@@ -40,6 +41,6 @@ def compare(a):
 			result+=process[i+1]
 		i+=2
 	return result
-		
+	
 print(max(compare(a),compare(b)))
 	
