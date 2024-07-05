@@ -1,14 +1,19 @@
+# n개의 10진수 주어짐
+
+# 10진수를 2진수로 나타냈을 때, 2진수에 포함된 1의 개수를 기준으로 내림차순 정렬
+# 1의 개수가 같다면, 원래 값 기준 내림차순 정렬
+
+#정렬 했을 때, 앞에서 k번째에 위치한 수 출력
+
 import sys
-input = sys.stdin.readline
+input=sys.stdin.readline
 
-n, k = map(int, input().split())
-a = list(map(int, input().split()))
+n,k=map(int,input().split())
 
-# 숫자의 1 비트 수를 카운트하여 정답 배열을 생성합니다.
-answer = [(bin(x).count('1'), x) for x in a]
+a=list(map(int,input().split()))
 
-# answer를 1 비트 수와 원래 숫자를 기준으로 정렬합니다.
-answer.sort(key=lambda x: (-x[0], -x[1]))
+answer=[(bin(x).count('1'),x) for x in a]
 
-# k번째 값을 출력합니다.
+answer.sort(key=lambda x: (-x[0],-x[1]))
+
 print(answer[k-1][1])
